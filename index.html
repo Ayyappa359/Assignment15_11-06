@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlickFinder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      color: white;
+      z-index: 10;
+      border-bottom: 1px solid rgb(17, 207, 172);
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      color: rgb(16, 210, 162);
+      font-size: 20px;
+      font-weight: bold;
+      border-top: 0.5px solid white;
+      border-left: 0.5px solid white;
+      padding: 8px;
+    }
+
+    .logo span {
+      color: white;
+      font-size: 25px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    nav a:hover {
+      border-bottom: 2px solid rgb(0, 234, 255);
+    }
+
+    .favorite-btn {
+      background-color: #00eaff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .slider {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slides {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slider-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 5;
+      padding: 0 10px;
+    }
+
+    .slider-content h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .slider-content p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .slider-content button {
+      background-color: white;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .nav-arrows {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .nav-arrows span {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 50%;
+      border: 1px solid white;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-arrows span:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      .slider-content h1 {
+        font-size: 1.5em;
+      }
+
+      .slider-content p {
+        font-size: 0.9em;
+      }
+
+      .slider-content button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+
+      nav a {
+        padding: 6px;
+        font-size: 0.9em;
+      }
+
+      .favorite-btn {
+        padding: 6px 12px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Flick<span>Finder</span></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">TV Show</a>
+      <a href="#">Movie</a>
+      <a href="#">Upcoming</a>
+      <button class="favorite-btn">Favorite ♡</button>
+    </nav>
+  </header>
+
+  <section class="slider">
+    <div class="slides">
+      <img src="./img1.jpg" class="slide active" />
+      <img src="https://img.freepik.com/free-vector/night-landscape-with-lake-mountains-trees-coast-vector-cartoon-illustration-nature-scene-with-coniferous-forest-river-shore-rocks-moon-stars-dark-sky_107791-8253.jpg?semt=ais_hybrid&w=740" class="slide" />
+      <img src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8NGslMjBkZXNrdG9wJTIwd2FsbGFwZXJ8ZW58MHx8MHx8fDA%3D" class="slide" />
+    </div>
+
+    <div class="slider-content">
+      <h1>Bringing the Big Screen to Your Screen</h1>
+      <p>Discover, critique, and celebrate movies<br>with honest reviews and fresh takes on every film</p>
+      <button>Discover More..</button>
+    </div>
+
+    <div class="nav-arrows">
+      <span id="prev">&#10094;</span>
+      <span id="next">&#10095;</span>
+    </div>
+  </section>
+
+  <script>
+    let slides = document.querySelectorAll(".slide");
+    let current = 0;
+
+    function showSlide(index) {
+      slides[current].classList.remove("active");
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add("active");
+    }
+
+    document.getElementById("next").onclick = () => showSlide(current + 1);
+    document.getElementById("prev").onclick = () => showSlide(current - 1);
+
+    setInterval(() => {
+      showSlide(current + 1);
+    }, 5000);
+  </script>
+</body>
+</html>
